@@ -41,9 +41,16 @@ def get_operation(operator):
     opertor_length = len(operator)
     display.insert(i, operator)
     i+=opertor_length
+    
+def replace_operation(display_state):
+    display_state = display_state.replace("x", "*")
+    display_state = display_state.replace("^", "**")
+    display_state = display_state.replace("÷", "/")
+    return display_state
 
 def calculate():
     display_state = display.get()
+    display_state = replace_operation(display_state)
     try:
         math_expression = parser.expr(display_state).compile()
         result = eval(math_expression)
